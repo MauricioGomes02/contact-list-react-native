@@ -67,7 +67,7 @@ function isValidDate(value) {
   return !isNaN(Date.parse(value))
 }
 
-function onSave(setData, isEdit, {name, email, phone, company, birthday}, onComeBack) {
+function onSave(setData, isEdit, {id, name, email, phone, company, birthday}, onComeBack) {
   setData(previousData => {
     const data = [...previousData]
 
@@ -91,7 +91,7 @@ function onSave(setData, isEdit, {name, email, phone, company, birthday}, onCome
 
       while (count < object.data.length) {
         const item = object.data[count]
-        if (item.id == contact.id) {
+        if (item.id == id) {
           index = count
           break
         }
@@ -214,7 +214,7 @@ export default function ContactEditComponent({contact, setData, onComeBack}) {
         <TouchableOpacity
           disabled={canSave}
           style={styles.saveButton}
-          onPress={() => {onSave(setData, isEdit(), {name, email, phone, company, birthday}, onComeBack)}}>
+          onPress={() => {onSave(setData, isEdit(), {id: contact?.id, name, email, phone, company, birthday}, onComeBack)}}>
           <Text style={styles.text}>Salvar</Text>
         </TouchableOpacity>
       </View>
